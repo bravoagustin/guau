@@ -1,0 +1,62 @@
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: var(--color-ink);
+  color: var(--color-bg);
+  font: var(--text-body);
+  letter-spacing: var(--tracking);
+}
+button { font: inherit; letter-spacing: inherit; cursor: pointer; }
+
+.app { min-height: 100%; display: flex; flex-direction: column; align-items: center; padding: 24px 16px 32px; gap: 20px; }
+.logo { margin: 0; font: 700 40px/1.5 var(--font-brand); letter-spacing: -0.022em; color: var(--color-bg); }
+
+/* Card (Figma: frame 340x480, radio 24, foto 340x340 arriba) */
+.card {
+  width: var(--card-width); height: var(--card-height);
+  background: var(--color-bg); color: var(--color-ink);
+  border-radius: var(--radius-lg); overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.card-photo { width: var(--card-photo); height: var(--card-photo); flex: none; background: var(--color-primary-light); object-fit: cover; display: block; }
+.card-body { padding: 12px 20px; display: flex; flex-direction: column; }
+.card-title { margin: 0; font: var(--text-title); letter-spacing: -0.011em; }
+.card-sub { margin: 0; font: var(--text-body); letter-spacing: -0.011em; }
+.card-detail { margin: 0; font: var(--text-detail); letter-spacing: -0.011em; }
+
+/* Botones de acción */
+.actions { display: flex; gap: 32px; }
+.round-btn {
+  width: 72px; height: 72px; border-radius: 50%; border: 0; font-size: 30px; line-height: 1;
+  display: grid; place-items: center; transition: transform .1s;
+}
+.round-btn:active { transform: scale(.92); }
+.round-btn.pass { background: var(--color-bg); color: var(--color-ink); }
+.round-btn.like { background: var(--color-green); color: var(--color-bg); }
+
+/* Pantalla de rol */
+.picker { width: var(--card-width); display: flex; flex-direction: column; gap: 12px; }
+.picker h2 { margin: 0; font: var(--text-title); letter-spacing: var(--tracking); }
+.pick-btn {
+  width: 100%; text-align: left; border: 0; border-radius: var(--radius-lg);
+  background: var(--color-bg); color: var(--color-ink); padding: 14px 20px;
+  font: var(--text-body); letter-spacing: var(--tracking);
+}
+.pick-btn small { display: block; font: var(--text-detail); }
+.pick-btn.primary { background: var(--color-primary); color: var(--color-bg); }
+.link-btn { background: none; border: 0; color: var(--color-primary-light); text-decoration: underline; font: var(--text-detail); }
+
+.topbar { width: var(--card-width); display: flex; justify-content: space-between; align-items: center; font: var(--text-detail); }
+.empty, .error { width: var(--card-width); text-align: center; font: var(--text-body); }
+.error { color: var(--color-primary-light); }
+
+/* Modal de match */
+.backdrop { position: fixed; inset: 0; background: rgba(10,10,10,.8); display: grid; place-items: center; padding: 16px; }
+.modal { width: var(--card-width); background: var(--color-bg); color: var(--color-ink); border-radius: var(--radius-lg); padding: 24px 20px; text-align: center; }
+.modal h2 { margin: 8px 0 4px; font: 700 32px/1.3 var(--font-title); letter-spacing: var(--tracking); }
+.modal p { margin: 0 0 16px; font: var(--text-body); letter-spacing: var(--tracking); }
+.three-slot { height: 160px; display: grid; place-items: center; font-size: 72px; border-radius: var(--radius-lg); background: var(--color-primary-light); }
+.match-pair { display: flex; justify-content: center; gap: 12px; margin: 12px 0 4px; }
+.match-pair img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; background: var(--color-primary-light); border: 3px solid var(--color-accent); }
+.cta { width: 100%; border: 0; border-radius: var(--radius-pill); background: var(--color-primary); color: var(--color-bg); padding: 12px 24px; font: 700 16px var(--font-title); }
