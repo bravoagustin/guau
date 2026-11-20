@@ -25,12 +25,12 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) {
         List<Dog> d = dogs.saveAll(List.of(
-            new Dog("Firulais", 3, "Mestizo", "Nueva Córdoba", "Busca compañero de trote en el Parque Sarmiento.", "Necesita correr 5 km", "https://images.dog.ceo/breeds/labrador/n02099712_1000.jpg", "Marcela"),
-            new Dog("Luna", 5, "Border Collie", "Güemes", "Pastorea a sus humanos. Cero siestas.", "Necesita correr 10 km", "https://images.dog.ceo/breeds/collie-border/n02106166_1000.jpg", "Jorge"),
-            new Dog("Don Salchicha", 7, "Teckel", "Alta Córdoba", "Filósofo del sillón. Paseos cortos y con pausa.", "Solo quiere dormir al sol", "https://images.dog.ceo/breeds/dachshund/dachshund-1.jpg", "Rosa"),
-            new Dog("Mate", 2, "Golden Retriever", "Cerro de las Rosas", "Ama los mates, los niños y los charcos.", "Paseo largo y pelota", "https://images.dog.ceo/breeds/retriever-golden/n02099601_1000.jpg", "Pablo"),
-            new Dog("Fernet", 4, "Bulldog Francés", "Cofico", "Roncador profesional. Hincha de Talleres.", "Paseo tranqui de 20 min", "https://images.dog.ceo/breeds/bulldog-french/n02108915_1000.jpg", "Lucía"),
-            new Dog("Chacha", 6, "Husky", "Villa Belgrano", "Sufre el calor cordobés, pero igual quiere salir.", "Necesita correr 8 km", "https://images.dog.ceo/breeds/husky/n02110185_1000.jpg", "Nico")
+            new Dog("Firulais", 3, "Mestizo", "Nueva Córdoba", "Busca compañero de trote en el Parque Sarmiento.", "Necesita correr 5 km", "https://images.dog.ceo/breeds/labrador/n02099712_311.jpg", "Marcela"),
+            new Dog("Luna", 5, "Border Collie", "Güemes", "Pastorea a sus humanos. Cero siestas.", "Necesita correr 10 km", "https://images.dog.ceo/breeds/collie-border/n02106166_678.jpg", "Jorge"),
+            new Dog("Don Salchicha", 7, "Teckel", "Alta Córdoba", "Filósofo del sillón. Paseos cortos y con pausa.", "Solo quiere dormir al sol", "https://images.dog.ceo/breeds/dachshund/dachshund-in-jacket.jpg", "Rosa"),
+            new Dog("Mate", 2, "Golden Retriever", "Cerro de las Rosas", "Ama los mates, los niños y los charcos.", "Paseo largo y pelota", "https://images.dog.ceo/breeds/retriever-golden/n02099601_6772.jpg", "Pablo"),
+            new Dog("Fernet", 4, "Bulldog Francés", "Cofico", "Roncador profesional. Hincha de Talleres.", "Paseo tranqui de 20 min", "https://images.dog.ceo/breeds/bulldog-french/n02108915_3557.jpg", "Lucía"),
+            new Dog("Chacha", 6, "Husky", "Villa Belgrano", "Sufre el calor cordobés, pero igual quiere salir.", "Necesita correr 8 km", "https://images.dog.ceo/breeds/husky/n02110185_4294.jpg", "Nico")
         ));
         List<Walker> w = walkers.saveAll(List.of(
             new Walker("Sofía", 24, "Nueva Córdoba", "Estudiante de veterinaria. Trota todas las mañanas.", "Paseos de hasta 10 km", "Mañanas", "https://i.pravatar.cc/300?img=47"),
