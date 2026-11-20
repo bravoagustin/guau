@@ -1,0 +1,29 @@
+/* Design System de Agustina (Figma > "Design Sistem") */
+:root {
+  /* Colores */
+  --color-ink: #0a0a0a;          /* texto / fondo oscuro */
+  --color-bg: #f0f4f5;           /* fondo de cards */
+  --color-primary: #228cdb;      /* azul principal */
+  --color-primary-light: #a7d1f1;/* azul claro */
+  --color-green: #008000;        /* verde (like) */
+  --color-accent: #33ff33;       /* verde acento (match) */
+
+  /* Tipografías */
+  --font-title: 'National Park', system-ui, sans-serif;  /* títulos y cuerpo */
+  --font-brand: 'Inter', system-ui, sans-serif;          /* logo GUAU */
+
+  /* Escala de texto (tamaño / line-height 1.5 / tracking -1.1%) */
+  --text-title: 700 24px/1.5 var(--font-title);
+  --text-body: 400 16px/1.5 var(--font-title);
+  --text-detail: 400 12px/1.5 var(--font-title);
+  --tracking: -0.011em;
+
+  /* Radios */
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+
+  /* Medidas de la card */
+  --card-width: 340px;
+  --card-height: 480px;
+  --card-photo: 340px;
+}
