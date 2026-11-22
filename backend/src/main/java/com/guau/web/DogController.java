@@ -40,14 +40,14 @@ public class DogController {
     @GetMapping("/walkers")
     public List<Walker> paseadores() { return walkers.findAll(); }
 
-    @Operation(summary = "Perros que el paseador todavía no vio (su pila de swipe)")
+    @Operation(summary = "Perros de la misma zona que el paseador todavía no vio (paseo a pie)")
     @GetMapping("/walkers/{walkerId}/dogs")
     public List<Dog> perrosParaPaseador(@PathVariable Long walkerId) {
         try { return swipeService.perrosParaPaseador(walkerId); }
         catch (NoSuchElementException e) { throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage()); }
     }
 
-    @Operation(summary = "Paseadores que el dueño del perro todavía no vio (su pila de swipe)")
+    @Operation(summary = "Paseadores de la misma zona que el perro todavía no vio (paseo a pie)")
     @GetMapping("/dogs/{dogId}/walkers")
     public List<Walker> paseadoresParaPerro(@PathVariable Long dogId) {
         try { return swipeService.paseadoresParaPerro(dogId); }
@@ -71,6 +71,8 @@ public class DogController {
             return Map.of("match", r.match(), "walker", r.walker(), "dog", r.dog());
         } catch (NoSuchElementException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        } catch (IllegalArgumentException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
 }

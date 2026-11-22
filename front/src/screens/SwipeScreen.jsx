@@ -37,7 +37,7 @@ export default function SwipeScreen({ role, profile, onExit }) {
   return (
     <>
       <div className="topbar">
-        <span>{role === 'WALKER' ? 'Paseador' : 'Dueño de'}: {profile.nombre}</span>
+        <span>{role === 'WALKER' ? 'Paseador' : 'Dueño de'}: {profile.nombre}{profile.zona ? ` · ${profile.zona}` : ''}</span>
         <button className="link-btn" onClick={onExit}>Cambiar</button>
       </div>
       {error && <p className="error">{error}</p>}
@@ -48,7 +48,7 @@ export default function SwipeScreen({ role, profile, onExit }) {
           <ActionButtons onPass={() => act('PASS')} onLike={() => act('LIKE')} disabled={busy} />
         </>
       )}
-      {stack && !current && <p className="empty">No hay más por hoy 🐾</p>}
+      {stack && !current && <p className="empty">No hay más en tu zona. Los paseos son a pie 🐾</p>}
       {match && <MatchModal walker={match.walker} dog={match.dog} onClose={() => setMatch(null)} />}
     </>
   )

@@ -1,5 +1,6 @@
 package com.guau.model;
 
+import com.guau.service.Zona;
 import jakarta.persistence.*;
 
 @Entity
@@ -24,6 +25,7 @@ public class Walker {
     public String getNombre() { return nombre; }
     public int getEdad() { return edad; }
     public String getBarrio() { return barrio; }
+    public String getZona() { return Zona.de(barrio); }
     public String getBio() { return bio; }
     public String getExperiencia() { return experiencia; }
     public String getDisponibilidad() { return disponibilidad; }

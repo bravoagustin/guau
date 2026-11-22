@@ -34,18 +34,24 @@ public class SwipeService {
         this.matches = matches; this.publisher = publisher;
     }
 
-    /** Perros que este paseador todavía no vio. */
+    /** Perros de la misma zona que este paseador todavía no vio. El paseo es a pie. */
     public List<Dog> perrosParaPaseador(Long walkerId) {
-        walkers.findById(walkerId).orElseThrow(() -> new NoSuchElementException("Paseador " + walkerId));
+        Walker walker = walkers.findById(walkerId).orElseThrow(() -> new NoSuchElementException("Paseador " + walkerId));
         Set<Long> vistos = vistos(Rol.WALKER, walkerId);
-        return dogs.findAll().stream().filter(d -> !vistos.contains(d.getId())).collect(Collectors.toList());
+        return dogs.findAll().stream()
+                .filter(d -> !vistos.contains(d.getId()))
+                .filter(d -> Zona.misma(walker.getBarrio(), d.getBarrio()))
+                .collect(Collectors.toList());
     }
 
-    /** Paseadores que el dueño de este perro todavía no vio. */
+    /** Paseadores de la misma zona que este perro todavía no vio. El paseo es a pie. */
     public List<Walker> paseadoresParaPerro(Long dogId) {
-        dogs.findById(dogId).orElseThrow(() -> new NoSuchElementException("Perro " + dogId));
+        Dog dog = dogs.findById(dogId).orElseThrow(() -> new NoSuchElementException("Perro " + dogId));
         Set<Long> vistos = vistos(Rol.DOG, dogId);
-        return walkers.findAll().stream().filter(w -> !vistos.contains(w.getId())).collect(Collectors.toList());
+        return walkers.findAll().stream()
+                .filter(w -> !vistos.contains(w.getId()))
+                .filter(w -> Zona.misma(dog.getBarrio(), w.getBarrio()))
+                .collect(Collectors.toList());
     }
 
     private Set<Long> vistos(Rol rol, Long id) {
@@ -62,6 +68,8 @@ public class SwipeService {
         Long dogId = actor == Rol.DOG ? actorId : objetivoId;
         Walker walker = walkers.findById(walkerId).orElseThrow(() -> new NoSuchElementException("Paseador " + walkerId));
         Dog dog = dogs.findById(dogId).orElseThrow(() -> new NoSuchElementException("Perro " + dogId));
+        if (!Zona.misma(walker.getBarrio(), dog.getBarrio()))
+            throw new IllegalArgumentException("El paseo es a pie: tienen que estar en la misma zona");
 
         boolean like = "LIKE".equalsIgnoreCase(accion);
         Swipe s = swipes.findByActorTipoAndActorIdAndObjetivoId(actor, actorId, objetivoId)

@@ -36,7 +36,8 @@ public class DataLoader implements CommandLineRunner {
             new Walker("Sofía", 24, "Nueva Córdoba", "Estudiante de veterinaria. Trota todas las mañanas.", "Paseos de hasta 10 km", "Mañanas", "https://i.pravatar.cc/300?img=47"),
             new Walker("Mateo", 29, "Güemes", "Adiestrador. Los perros nerviosos me aman.", "Perros grandes y enérgicos", "Tardes", "https://i.pravatar.cc/300?img=12"),
             new Walker("Camila", 31, "Cofico", "Paseos tranquis con parada en el café.", "Perros mayores y chicos", "Todo el día", "https://i.pravatar.cc/300?img=32"),
-            new Walker("Lucas", 22, "Alta Córdoba", "Vago con carácter, pero responsable.", "Paseos cortos", "Noches", "https://i.pravatar.cc/300?img=15")
+            new Walker("Lucas", 22, "Alta Córdoba", "Vago con carácter, pero responsable.", "Paseos cortos", "Noches", "https://i.pravatar.cc/300?img=15"),
+            new Walker("Valentina", 27, "Villa Belgrano", "Sale con los perros del cerro al atardecer.", "Paseos por la zona noroeste", "Tardes", "https://i.pravatar.cc/300?img=5")
         ));
 
         // Datos de demo para que el match sea predecible (los likes "ya dados" por el otro lado):

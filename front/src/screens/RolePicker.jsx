@@ -35,7 +35,7 @@ export default function RolePicker({ onPick }) {
       {list.map((x) => (
         <button key={x.id} className="pick-btn" onClick={() => onPick({ role: mode, profile: x })}>
           {x.nombre}
-          <small>{x.barrio}</small>
+          <small>{x.barrio}{x.zona ? ` · ${x.zona}` : ''}</small>
         </button>
       ))}
       <button className="link-btn" onClick={() => setMode(null)}>← Volver</button>
