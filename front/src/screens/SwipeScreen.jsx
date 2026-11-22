@@ -3,6 +3,7 @@ import { getDogsForWalker, getWalkersForDog, swipe } from '../api'
 import ProfileCard, { dogCardProps, walkerCardProps } from '../components/ProfileCard'
 import ActionButtons from '../components/ActionButtons'
 import MatchModal from '../components/MatchModal'
+import useSlowNotice, { SLOW_MESSAGE } from '../useSlowNotice'
 
 // role 'WALKER': el paseador ve perros. role 'DOG': el dueño ve paseadores.
 export default function SwipeScreen({ role, profile, onExit }) {
@@ -16,6 +17,7 @@ export default function SwipeScreen({ role, profile, onExit }) {
     load(profile.id).then(setStack).catch(() => setError('No se pudo cargar la lista.'))
   }, [role, profile.id])
 
+  const slow = useSlowNotice(!error && stack === null)
   const current = stack?.[0]
 
   async function act(accion) {
@@ -41,7 +43,7 @@ export default function SwipeScreen({ role, profile, onExit }) {
         <button className="link-btn" onClick={onExit}>Cambiar</button>
       </div>
       {error && <p className="error">{error}</p>}
-      {!error && stack === null && <p className="empty">Cargando…</p>}
+      {!error && stack === null && <p className="empty">{slow ? SLOW_MESSAGE : 'Cargando…'}</p>}
       {stack && current && (
         <>
           <ProfileCard {...cardProps(current)} />

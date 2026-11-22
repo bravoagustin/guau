@@ -20,7 +20,6 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "*")
 @Tag(name = "Guau", description = "Paseadores, perros, swipes y matches")
 public class DogController {
     private final DogRepository dogs;

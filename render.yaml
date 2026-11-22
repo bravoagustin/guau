@@ -1,0 +1,12 @@
+# Blueprint de Render: New + > Blueprint > elegir este repo.
+services:
+  - type: web
+    name: guau-api
+    runtime: docker
+    plan: free
+    dockerContext: backend
+    dockerfilePath: backend/Dockerfile
+    healthCheckPath: /api/dogs
+    envVars:
+      - key: CORS_ALLOWED_ORIGINS
+        value: https://bravoagustin.github.io
