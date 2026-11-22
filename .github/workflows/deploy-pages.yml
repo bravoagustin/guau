@@ -21,13 +21,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Avisar si falta la URL del backend
-        if: ${{ vars.VITE_API_URL == '' }}
-        run: echo "::warning::Falta la variable de repositorio VITE_API_URL. El front se publica pero no va a poder hablar con el backend."
-
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
           cache-dependency-path: front/package-lock.json
 
@@ -35,11 +31,18 @@ jobs:
         run: npm ci
         working-directory: front
 
+      - name: Tests
+        run: npm test
+        working-directory: front
+
+      # Sin VITE_API_URL la demo corre con un backend simulado en el navegador (modo mock).
+      # Con VITE_API_URL definida (variable de repositorio), el front usa el backend real.
       - name: Build
         run: npm run build
         working-directory: front
         env:
           VITE_API_URL: ${{ vars.VITE_API_URL }}
+          VITE_USE_MOCK: ${{ vars.VITE_API_URL == '' && 'true' || 'false' }}
 
       - uses: actions/upload-pages-artifact@v3
         with:

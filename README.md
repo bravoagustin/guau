@@ -4,11 +4,12 @@ Matching de paseadores y perros. Los paseadores eligen perros y los dueños elig
 
 **Demo:** https://bravoagustin.github.io/guau/
 
-> El backend corre en un plan gratuito que se duerme tras ~15 minutos sin tráfico. Si la demo dice "Despertando el servidor…", esperá hasta un minuto y arranca sola.
+> La demo publicada corre en **modo mock**: el front incluye un backend simulado en el navegador (`front/src/mock/`) que replica las reglas del backend real (zonas a pie, pila de "ya vistos" y match recíproco). Así abre al instante, sin servidor. El backend real de Spring Boot está en `backend/` y se puede correr en local (ver abajo).
+> Para probar el flujo de match: como paseador elegí **Sofía** y dale LIKE a **Firulais** o **Luna**, que ya la habían elegido.
 
 ## Estructura
 - `backend/`: Spring Boot 3 (Java 21) + Spring Data JPA + H2 en memoria + eventos internos de Spring. Documentación Swagger incluida.
-- `front/`: React + Vite, con tokens de diseño tomados de Figma.
+- `front/`: React + Vite, con tokens de diseño tomados de Figma. `src/api.js` elige entre el backend real (`httpApi.js`) y el simulado (`mock/mockApi.js`).
 
 ## Cómo correrlo en local
 
@@ -29,7 +30,13 @@ npm install
 npm run dev
 ```
 
+## Tests
+```
+cd front && npm test      # lógica del backend simulado (node:test, sin dependencias)
+cd backend && mvn test    # CORS y contexto de Spring
+```
+
 ## Deploy
-- **Front → GitHub Pages**, con el workflow `.github/workflows/deploy-pages.yml`. La URL del backend se inyecta en el build desde la variable de repositorio `VITE_API_URL`.
-- **Backend → Render** (Docker, plan gratuito), definido en `render.yaml`. La variable `CORS_ALLOWED_ORIGINS` define qué orígenes pueden llamar a la API (por defecto solo `http://localhost:5173`).
-- La base es H2 en memoria: los datos de ejemplo se cargan en cada arranque (`DataLoader`) y los swipes se pierden al reiniciar. Es una decisión de demo, no de producción.
+- **Front → GitHub Pages**, con el workflow `.github/workflows/deploy-pages.yml` (corre los tests y publica). Por defecto compila en modo mock (`VITE_USE_MOCK=true`).
+- **Usar el backend real en la demo (opcional):** desplegar `backend/` con el `Dockerfile` o el blueprint `render.yaml` y cargar la URL en la variable de repositorio `VITE_API_URL`. Con esa variable definida, el workflow compila contra el backend real. Configurar `CORS_ALLOWED_ORIGINS=https://bravoagustin.github.io` en el backend.
+- La base del backend es H2 en memoria: los datos de ejemplo se cargan en cada arranque (`DataLoader`) y los swipes se pierden al reiniciar. Es una decisión de demo, no de producción.
