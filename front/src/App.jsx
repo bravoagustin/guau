@@ -1,9 +1,12 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { wakeServer } from './api'
 import RolePicker from './screens/RolePicker'
 import SwipeScreen from './screens/SwipeScreen'
 
 export default function App() {
   const [session, setSession] = useState(null) // { role: 'WALKER'|'DOG', profile }
+
+  useEffect(() => { wakeServer() }, [])
 
   return (
     <main className="app">
