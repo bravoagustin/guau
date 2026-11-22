@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { wakeServer } from './api'
+import { isMock, wakeServer } from './api'
 import RolePicker from './screens/RolePicker'
 import SwipeScreen from './screens/SwipeScreen'
 
@@ -11,6 +11,7 @@ export default function App() {
   return (
     <main className="app">
       <h1 className="logo">GUAU</h1>
+      {isMock && <p className="demo-badge">Modo demo: datos simulados en tu navegador</p>}
       {session
         ? <SwipeScreen key={`${session.role}-${session.profile.id}`} {...session} onExit={() => setSession(null)} />
         : <RolePicker onPick={setSession} />}

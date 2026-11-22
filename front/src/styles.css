@@ -10,6 +10,7 @@ body {
 button { font: inherit; letter-spacing: inherit; cursor: pointer; }
 
 .app { min-height: 100%; display: flex; flex-direction: column; align-items: center; padding: 24px 16px 32px; gap: 20px; }
+.demo-badge { margin: -12px 0 0; padding: 4px 12px; border-radius: var(--radius-pill); background: var(--color-primary-light); color: var(--color-ink); font: var(--text-detail); letter-spacing: var(--tracking); }
 .logo { margin: 0; font: 700 40px/1.5 var(--font-brand); letter-spacing: -0.022em; color: var(--color-bg); }
 
 /* Card (Figma: frame 340x480, radio 24, foto 340x340 arriba) */
